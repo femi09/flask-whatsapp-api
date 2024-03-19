@@ -3,17 +3,17 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-application = Flask(__name__)
+app = Flask(__name__)
 
 verify_token = os.getenv('VERIFY_TOKEN')
 
 
-@application.route("/")
+@app.route("/")
 def hello_world():
     return "<p>Hello, World!</p>"
 
 
-@application.get("/webhook")
+@app.get("/webhook")
 def webhook_whatsapp():
     """__summary__: Get message from the webhook"""
     hub_token = request.args.get('hub.verify_token')
@@ -31,4 +31,4 @@ def webhook_whatsapp():
 if __name__ == "__main__":
     # Setting debug to True enables debug output. This line should be
     # removed before deploying a production app.
-    application.run()
+    app.run()
